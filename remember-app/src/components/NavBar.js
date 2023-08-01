@@ -14,7 +14,15 @@ const NavBar = () => {
   return (
     <Navbar className={styles.NavBar} expand="md" fixed='top' expanded={expanded}>
     <Container>
-        <NavLink exact className={styles.Brand} to='/'>Remember</NavLink>
+        <NavLink exact to='/'>Remember</NavLink>
+        <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active}
+                aria-label="users page"
+                to='/signup'>
+                <i className="fa-solid fa-person-walking" /> Signup
+            </NavLink>
+        <div><p>User: xxxx</p></div>
         <Navbar.Toggle
             className={styles.Toggle}
             aria-controls="basic-navbar-nav"

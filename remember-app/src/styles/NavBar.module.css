@@ -1,0 +1,8 @@
+.NavBar {
+    background-color: #282c34;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    border-bottom: 1px solid #2466e9;
+  }
