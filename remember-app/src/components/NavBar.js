@@ -21,7 +21,14 @@ const NavBar = () => {
                 aria-label="users page"
                 to='/signup'>
                 <i className="fa-solid fa-person-walking" /> Signup
-            </NavLink>
+        </NavLink>
+        <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active}
+                aria-label="movies list"
+                to='/movies'>
+                <i className="fa-solid fa-person-walking" /> Movies
+        </NavLink>
         <div><p>User: xxxx</p></div>
         <Navbar.Toggle
             className={styles.Toggle}

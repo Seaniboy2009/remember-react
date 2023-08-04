@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import { Route, Routes } from 'react-router-dom'
 import SignUpPage from '../src/pages/auth/SignUpPage'
 import Home from './pages/Home';
+import MoviesList from './pages/MoviesList';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path='/' element ={<Home />} />
           <Route path='/signup' element ={<SignUpPage />} />
+          <Route path='/movies' element ={<MoviesList />} />
         </Routes>
       </Container>
     </div>
