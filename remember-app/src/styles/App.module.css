@@ -1,5 +1,5 @@
 .App {
-  background-color: #141526;
+  background-color: #1b2838;
   color: rgb(255, 255, 255);
   min-height: 140vh;
   text-align: center;
@@ -11,7 +11,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #1b2838;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,8 +22,8 @@
 }
 
 .Container {
-  background-color: #252740;
-  border: 1px solid #4c508f;
+  background-color: #1b2838;
+  border: 1px solid #2f4662;
   padding: 10px;
   margin-top: 10px;
 }

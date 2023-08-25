@@ -14,7 +14,7 @@ const NavBar = () => {
   return (
     <Navbar className={styles.NavBar} expand="md" fixed='top' expanded={expanded}>
     <Container>
-        <NavLink exact to='/'>Remember</NavLink>
+        <NavLink className={styles.Brand} exact to='/'>Remember</NavLink>
         <NavLink
                 className={styles.Link}
                 activeClassName={styles.Active}

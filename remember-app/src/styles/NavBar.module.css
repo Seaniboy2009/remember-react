@@ -1,8 +1,26 @@
 .NavBar {
-    background-color: #282c34;
+    background-color: #1b2838;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-    border-bottom: 1px solid #2466e9;
+    border-bottom: 1px solid #2f4662;
   }
+
+.Link {
+    padding: 10px;
+    color: #ffffff;
+}
+
+.Link:hover {
+  color: #4f5862;
+}
+
+.Brand {
+  color: #ffffff;
+  font-size: 150%;
+}
+
+.Brand:hover {
+  color: #4f5862;
+}
