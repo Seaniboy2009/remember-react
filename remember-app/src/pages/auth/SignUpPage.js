@@ -24,7 +24,7 @@ const SignUpPage = () => {
   // Navigate is used to divert user to another page
   const navigate = useNavigate();
 
-  // Update the target event name with the target value
+  // Update the target event name with the target value when it is bveing changed by the user
   const handleChange = (event) => {
     setFormData({
       ...formData,
@@ -34,23 +34,16 @@ const SignUpPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
     try {
       await axios.post('https://app-remember-api-0c8e0548ec15.herokuapp.com/dj-rest-auth/registration/', formData)
       navigate.push("/home");
     } catch (err) {
       setErrors(err.response?.data)
-      console.log(err.response?.data)
-      console.log(err.response?.data.non_field_errors)
     }
   }
 
   return (
     <>
-      {/* {errors.map(error => <p>{error}</p>)} */}
-      {console.log(errors?.username)}
-      {console.log(errors?.password1)}
-      {console.log(errors?.password2)}
       <div className={stylesApp.Container}>
         <h5>Please use the form below to create an account.</h5>
         <Row className={`${styles.FormHolder} justify-content-md-center`}>

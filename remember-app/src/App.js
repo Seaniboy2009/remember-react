@@ -5,8 +5,12 @@ import { Route, Routes } from 'react-router-dom'
 import SignUpPage from '../src/pages/auth/SignUpPage'
 import Home from './pages/Home';
 import MoviesList from './pages/MoviesList';
+import { useCurrentUser } from './contexts/CurrentUserContext';
+import SignInPage from './pages/auth/SignInPage';
 
 function App() {
+  const currentUser = useCurrentUser()
+
   return (
     <div className={styles.App}>
       <NavBar />
@@ -14,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element ={<Home />} />
           <Route path='/signup' element ={<SignUpPage />} />
+          <Route path='/signin' element ={<SignInPage />} />
           <Route path='/movies' element ={<MoviesList />} />
         </Routes>
       </Container>

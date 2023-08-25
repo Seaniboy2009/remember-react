@@ -6,8 +6,11 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav';
 
 import { NavLink } from 'react-router-dom';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 const NavBar = () => {
+    // Custom hook to get the signed in user
+    const currentUser = useCurrentUser()
 
     const { expanded, setExpanded, ref } = useClickOutsideSelected();
 
@@ -29,7 +32,14 @@ const NavBar = () => {
                 to='/movies'>
                 <i className="fa-solid fa-person-walking" /> Movies
         </NavLink>
-        <div><p>User: xxxx</p></div>
+        <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active}
+                aria-label="movies list"
+                to='/signin'>
+                <i className="fa-solid fa-person-walking" /> Signin
+        </NavLink>
+        <div><p>User: {currentUser ? (`Logged in as: ${currentUser?.username}`) : 'logged out'}</p></div>
         <Navbar.Toggle
             className={styles.Toggle}
             aria-controls="basic-navbar-nav"
