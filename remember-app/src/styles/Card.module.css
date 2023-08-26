@@ -1,0 +1,31 @@
+.Container {
+    background-color: #1b2838;
+    padding: 0px;
+    margin-top: 10px;
+    height: 390px;
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(226, 21, 21, 0.19);
+    font-size: 80%;
+}
+
+.ImageContainer {
+    background-color: #1b2838;
+    padding: 0px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(226, 21, 21, 0.19);
+    font-size: 80%;
+}
+
+.TextContainer {
+    background-color: #1b2838;
+    padding: 0px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(226, 21, 21, 0.19);
+    font-size: 80%;
+}
+
+.Image {
+    max-width: 100%;
+    object-fit: cover;
+    height: auto;
+}

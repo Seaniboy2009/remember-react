@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import styles from '../styles/Home.module.css'
-import { axiosReq } from '../api/AxiosDefaults';
+import styles from '../styles/MoviesList.module.css'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import Card from '../components/Card'
+import Container from 'react-bootstrap/esm/Container'
+import Button from 'react-bootstrap/esm/Button';
 
 const MoviesList = () => {
     // State for storing the movies and setting the movies
@@ -36,28 +38,20 @@ const MoviesList = () => {
 
     }, [pathname])
 
+    const handleCreate = (event) => {
+        'hfdskajf'
+    }
+
   return (
-    <div className={styles.Container}>
-        <h2>Movies</h2>
-        
+    <>
+        <Container className={styles.Container}>
         {hasLoaded ? (
             <>
             {movies ? (
                 <>
-                {/* Map over each of the movies */}
-                    {movies.map((movie) => (
-                        <>
-                        <h3>Title</h3>
-                        <p>{movie.title}</p>
-                        <h3>Created on</h3>
-                        <p>{movie.created_on}</p>
-                        <h3>Category</h3>
-                        <p>{movie.category}</p>
-                        <h3>Completed</h3>
-                        <p>{movie.completed}</p>
-                        <h3>Owner</h3>
-                        <p>{movie.owner}</p>
-                        </>
+                    {/* Map over each of the movies */}
+                    {movies?.map((movie) => (
+                        <Card key={movie.id} {...movie} />
                     ))}
                 </>
                 ) : (
@@ -66,12 +60,13 @@ const MoviesList = () => {
             }
             </>
         ) : (
-            <>
             <p>Loading....</p>
-            </>
-
         )}
+    </Container>
+    <div>
+        <Button onclick={handleCreate} >Create</Button>
     </div>
+    </>
   )
 }
 
