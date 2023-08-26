@@ -7,12 +7,12 @@ import Row from 'react-bootstrap/Row';
 import axios from "axios";
 import styles from '../../styles/SignUp.module.css'
 
-import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import { useNavigate } from 'react-router-dom';
 
 const SignInForm = () => {
     // Custom hook to set the signed in user
     const setCurrentUser = useSetCurrentUser()
-    const currentUser = useCurrentUser()
 
     // Data that will be sent to the API
     const [formData, setFormData] = useState({
@@ -21,10 +21,7 @@ const SignInForm = () => {
     });
     const { username, password } = formData;
     const [errors, setErrors] = useState({});
-    // const history = useHistory();
-
-    const [show, setShow] = useState(false);
-    const [message, setMessage] = useState('Default message')
+    const navigate = useNavigate()
 
     // Handle the changes made on the form
     const handleChange = (event) => {
@@ -34,29 +31,25 @@ const SignInForm = () => {
         })
     }
 
+    const handleTestClick = (event) => {
+        navigate('/')
+    }
+
     // Send the formdata to the API and send user to homepage
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(formData)
         try {
-            const { data } = await axios.post('/dj-rest-auth/login/', formData)
+            const { data } = await axios.post('https://8000-seaniboy200-rememberapi-aahgjtzy025.ws-eu104.gitpod.io/dj-rest-auth/login/', formData)
             setCurrentUser(data.user)
-            console.log(data)
-            // history.push("/");
-        } catch (errors) {
-            setErrors(errors.response?.data)
-            setMessage(errors.response?.data.non_field_errors)
-            setShow(true)
+            console.log('signed in', data)
+            navigate("/");
+        } catch (err) {
+            setErrors(err.response?.data)
         }
     }
     return (
         <>
-            <Row className={`${styles.Welcome} justify-content-md-center`}>
-                <Col xs={12}>
-                <span>Welcome to as advertised. <br /> Where we compare advertised products to the actual product</span>
-                <br />
-                </Col>
-            </Row>
             <Row className={`${styles.Container} justify-content-md-center`}>
                 <Col xs={8}>
                     <Form onSubmit={handleSubmit}>
@@ -69,7 +62,7 @@ const SignInForm = () => {
                                 value={username}
                                 onChange={handleChange}
                             />
-                            {errors.username?.map((message, index) =>
+                            {errors?.username?.map((message, index) =>
                                 <Alert key={index}>{message}</Alert>
                             )}
                         </Form.Group>
@@ -82,21 +75,24 @@ const SignInForm = () => {
                                 value={password}
                                 onChange={handleChange}
                             />
-                            {errors.password?.map((message, index) =>
+                            {errors?.password?.map((message, index) =>
                                 <Alert key={index}>{message}</Alert>
                             )}
                         </Form.Group>
                         <Button type="submit">
                             Sign in
                         </Button>
-                        {errors.non_field_errors?.map((message, index) =>
+                        <Button onClick={handleTestClick}>
+                            Test re-direct
+                        </Button>
+                        {errors?.non_field_errors?.map(error => <p>{error}</p>)}
+                        {errors?.non_field_errors?.map((message, index) =>
                             <Alert key={index}>{message}</Alert>
                         )}
                     </Form>
                 </Col>
             </Row>
         </>
-
     )
 }
 

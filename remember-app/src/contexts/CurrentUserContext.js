@@ -32,22 +32,18 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     handleMount();
-    console.log('useeffect')
   }, []);
 
   useMemo(() => {
     // request interceptor, this will try and refresh the token before making a request
-    console.log('use memo')
     axiosReq.interceptors.request.use(
       async (config) => {
         try {
           await axios.post("/dj-rest-auth/token/refresh/");
-          console.log('request interceptor')
-          console.log(currentUser)
         } catch (error) {
           setCurrentUser((prevCurrentUser) => {
             if (prevCurrentUser) {
-                navigate.push("/signin");
+                navigate("/signin");
             }
             return null;
           });
@@ -67,11 +63,10 @@ export const CurrentUserProvider = ({ children }) => {
         if (error.response?.status === 401) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
-            console.log('response interceptor')
           } catch (error) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                navigate.push("/signin");
+                navigate("/signin");
               }
               return null;
             });

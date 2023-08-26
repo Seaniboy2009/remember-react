@@ -16,9 +16,8 @@ const MoviesList = () => {
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const { data } = await axiosReq.get('/tasks/')
+                const { data } = await axios.get('/tasks/')
                 setMovies(data)
-                console.log(data)
                 setHasLoaded(true)
             } catch (error) {
                 setErrors(error.response?.data)

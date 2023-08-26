@@ -36,7 +36,7 @@ const SignUpPage = () => {
     event.preventDefault()
     try {
       await axios.post('https://app-remember-api-0c8e0548ec15.herokuapp.com/dj-rest-auth/registration/', formData)
-      navigate.push("/home");
+      navigate("/");
     } catch (err) {
       setErrors(err.response?.data)
     }
@@ -58,7 +58,7 @@ const SignUpPage = () => {
                     value={username}
                     onChange={handleChange}
                 />
-                {errors.username?.map((message, index) =>
+                {errors?.username?.map((message, index) =>
                     <Alert key={index}>{message}</Alert>
                 )}
                 </Form.Group>

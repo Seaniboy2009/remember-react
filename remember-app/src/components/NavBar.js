@@ -6,40 +6,70 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav';
 
 import { NavLink } from 'react-router-dom';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+import axios from 'axios';
+import Button from 'react-bootstrap/esm/Button';
 
 const NavBar = () => {
     // Custom hook to get the signed in user
     const currentUser = useCurrentUser()
+    const setCurrentUser = useSetCurrentUser()
 
     const { expanded, setExpanded, ref } = useClickOutsideSelected();
+
+    const handleSignOut = async () => {
+        try {
+            await axios.post('/dj-rest-auth/logout/');
+            setCurrentUser(null);
+        } catch (error) {
+            
+        }
+    };
+
+    const signedIn = (
+        <>
+        <NavLink
+            className={styles.Link}
+            activeClassName={styles.Active}
+            aria-label="movies list"
+            to='/'
+        >User: {currentUser?.username}
+        </NavLink>
+        <Button onClick={handleSignOut}>Sign out</Button>
+        </>
+    )
+
+    const signedOut = (
+        <>
+        <NavLink
+            className={styles.Link}
+            activeClassName={styles.Active}
+            aria-label="users page"
+            to='/signup'
+        >Sign Up
+        </NavLink>
+        <NavLink
+            className={styles.Link}
+            activeClassName={styles.Active}
+            aria-label="movies list"
+            to='/signin'
+        >Sign In
+        </NavLink>
+        </>
+    )
 
   return (
     <Navbar className={styles.NavBar} expand="md" fixed='top' expanded={expanded}>
     <Container>
         <NavLink className={styles.Brand} exact to='/'>Remember</NavLink>
         <NavLink
-                className={styles.Link}
-                activeClassName={styles.Active}
-                aria-label="users page"
-                to='/signup'>
-                <i className="fa-solid fa-person-walking" /> Signup
+            className={styles.Link}
+            activeClassName={styles.Active}
+            aria-label="movies list"
+            to='/movies'
+        >Movies
         </NavLink>
-        <NavLink
-                className={styles.Link}
-                activeClassName={styles.Active}
-                aria-label="movies list"
-                to='/movies'>
-                <i className="fa-solid fa-person-walking" /> Movies
-        </NavLink>
-        <NavLink
-                className={styles.Link}
-                activeClassName={styles.Active}
-                aria-label="movies list"
-                to='/signin'>
-                <i className="fa-solid fa-person-walking" /> Signin
-        </NavLink>
-        <div><p>User: {currentUser ? (`Logged in as: ${currentUser?.username}`) : 'logged out'}</p></div>
+        {currentUser ? signedIn : signedOut}
         <Navbar.Toggle
             className={styles.Toggle}
             aria-controls="basic-navbar-nav"
