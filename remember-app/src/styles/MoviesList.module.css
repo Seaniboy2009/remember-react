@@ -3,8 +3,17 @@
     border: 1px solid #4c508f;
     padding: 10px;
     margin-top: 10px;
+    height: fit-content;
 }
 
 .Container {
     display: flex;
+}
+
+.Col {
+    height: 60%;
+}
+
+.Row {
+    height: fit-content;
 }

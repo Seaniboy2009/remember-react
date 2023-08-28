@@ -6,6 +6,8 @@ import Card from '../components/Card'
 import Container from 'react-bootstrap/esm/Container'
 import Button from 'react-bootstrap/esm/Button';
 import { useNavigate } from 'react-router-dom';
+import Col from 'react-bootstrap/esm/Col';
+import Row from 'react-bootstrap/esm/Row';
 
 const MoviesList = () => {
     // State for storing the movies and setting the movies
@@ -55,9 +57,17 @@ const MoviesList = () => {
             {movies ? (
                 <>
                     {/* Map over each of the movies */}
-                    {movies?.results.map((movie) => (
-                        <Card key={movie.id} {...movie} />
+                    {/* This is a bit of a mess to make the rows only be 4  */}
+                    <Row>
+                    {movies?.results.map((movie, index) => (
+                        <>
+                            <Col xs md={4} className={styles.Col}>
+                                <Card key={movie.id} {...movie} />
+                            </Col>
+                        {index % 2 === 0 && index !== 0 ? (<Container></Container>) : ('')}
+                        </>
                     ))}
+                    </Row>
                 </>
                 ) : (
                     <p>No movies !! Sad face !!</p>

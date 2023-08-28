@@ -26,6 +26,27 @@ const NavBar = () => {
         }
     };
 
+    const checkToken = async () => {
+        try {
+            console.log('Check Token')
+            const { data } = await axios.post('/dj-rest-auth/token/refresh/')
+            console.log(`Token ${data}`)
+        } catch (error) {
+            
+        }
+    }
+
+    const checkUser = async () => {
+        try {
+            console.log('Check User')
+            const { data } = await axios.get('/dj-rest-auth/user/')
+            console.log('User')
+            console.log(data)
+        } catch (error) {
+            
+        }
+    }
+
     const signedIn = (
         <>
         <NavLink
@@ -70,6 +91,8 @@ const NavBar = () => {
         >Movies
         </NavLink>
         {currentUser ? signedIn : signedOut}
+        <Button onClick={checkToken}>Check token</Button>
+        <Button onClick={checkUser}>Check User</Button>
         <Navbar.Toggle
             className={styles.Toggle}
             aria-controls="basic-navbar-nav"
