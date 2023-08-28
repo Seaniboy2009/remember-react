@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Card from '../components/Card'
 import Container from 'react-bootstrap/esm/Container'
 import Button from 'react-bootstrap/esm/Button';
+import { useNavigate } from 'react-router-dom';
 
 const MoviesList = () => {
     // State for storing the movies and setting the movies
@@ -14,13 +15,17 @@ const MoviesList = () => {
     // State for checking if the data has loaded or not
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getMovies = async () => {
             try {
+                console.log('Get movies request')
                 const { data } = await axios.get('/tasks/')
                 setMovies(data)
                 setHasLoaded(true)
+                console.log('Request sucesfull')
+                console.log(data)
             } catch (error) {
                 setErrors(error.response?.data)
                 console.log(error)
@@ -38,8 +43,8 @@ const MoviesList = () => {
 
     }, [pathname])
 
-    const handleCreate = (event) => {
-        'hfdskajf'
+    const handleTestClick = (event) => {
+        navigate('/movies/create')
     }
 
   return (
@@ -50,7 +55,7 @@ const MoviesList = () => {
             {movies ? (
                 <>
                     {/* Map over each of the movies */}
-                    {movies?.map((movie) => (
+                    {movies?.results.map((movie) => (
                         <Card key={movie.id} {...movie} />
                     ))}
                 </>
@@ -64,7 +69,7 @@ const MoviesList = () => {
         )}
     </Container>
     <div>
-        <Button onclick={handleCreate} >Create</Button>
+        <Button onClick={handleTestClick}>Create</Button>
     </div>
     </>
   )

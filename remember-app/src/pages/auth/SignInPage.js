@@ -9,6 +9,7 @@ import styles from '../../styles/SignUp.module.css'
 
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useNavigate } from 'react-router-dom';
+import { axiosReq } from '../../api/AxiosDefaults';
 
 const SignInForm = () => {
     // Custom hook to set the signed in user
@@ -40,9 +41,11 @@ const SignInForm = () => {
         event.preventDefault();
         console.log(formData)
         try {
-            const { data } = await axios.post('https://8000-seaniboy200-rememberapi-aahgjtzy025.ws-eu104.gitpod.io/dj-rest-auth/login/', formData)
+            console.log('Try sign in')
+            const { data } = await axios.post('/dj-rest-auth/login/', formData)
             setCurrentUser(data.user)
-            console.log('signed in', data)
+            console.log('Success sign in')
+            console.log(data)
             navigate("/");
         } catch (err) {
             setErrors(err.response?.data)

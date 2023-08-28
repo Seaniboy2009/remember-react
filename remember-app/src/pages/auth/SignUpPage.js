@@ -35,7 +35,7 @@ const SignUpPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      await axios.post('https://app-remember-api-0c8e0548ec15.herokuapp.com/dj-rest-auth/registration/', formData)
+      await axios.post('/dj-rest-auth/registration/', formData)
       navigate("/");
     } catch (err) {
       setErrors(err.response?.data)
