@@ -90,6 +90,13 @@ const NavBar = () => {
             to='/movies'
         >Movies
         </NavLink>
+        <NavLink
+            className={styles.Link}
+            activeClassName={styles.Active}
+            aria-label="Test page"
+            to='/test'
+        >Test
+        </NavLink>
         {currentUser ? signedIn : signedOut}
         {/* <Button onClick={checkToken}>Check token</Button> */}
         {/* <Button onClick={checkUser}>Check User</Button> */}

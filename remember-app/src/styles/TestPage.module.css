@@ -1,0 +1,7 @@
+.Table {
+    color: #ffffff;
+}
+
+.Table tr:hover, .Table td:hover {
+    color: #d2f797;
+}

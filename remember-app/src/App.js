@@ -9,6 +9,7 @@ import { useCurrentUser } from './contexts/CurrentUserContext';
 import SignInPage from './pages/auth/SignInPage';
 import MoviesCreate from './pages/MoviesCreate';
 import MoviesDetail from './pages/MoviesDetail';
+import TestPage from './pages/TestPage';
 
 function App() {
   const currentUser = useCurrentUser()
@@ -24,6 +25,7 @@ function App() {
           <Route path='/movies' element ={<MoviesList />} />
           <Route path='/movies/:id' element ={<MoviesDetail />} />
           <Route path='/movies/create' element ={<MoviesCreate />} />
+          <Route path='/test' element ={<TestPage />} />
         </Routes>
       </Container>
     </div>
