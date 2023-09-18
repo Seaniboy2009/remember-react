@@ -8,6 +8,9 @@ export default AuthContext
 
 export const AuthProvider = ({children}) => {
 
+    const testURL = 'https://8000-seaniboy200-rememberapi-aahgjtzy025.ws-eu104.gitpod.io/api/token/'
+    const herokuURL = 'https://app-remember-api-0c8e0548ec15.herokuapp.com/api/token/'
+
     console.log(localStorage.getItem('authTokens'))
     const navigate = useNavigate()
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
@@ -16,7 +19,7 @@ export const AuthProvider = ({children}) => {
     let loginUser = async (event) => {
         event.preventDefault();
         console.log('form submitted')
-        let response = await fetch('https://8000-seaniboy200-rememberapi-aahgjtzy025.ws-eu104.gitpod.io/api/token/', {
+        let response = await fetch(herokuURL, {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
