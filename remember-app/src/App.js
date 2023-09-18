@@ -5,11 +5,13 @@ import { Route, Routes } from 'react-router-dom'
 import SignUpPage from '../src/pages/auth/SignUpPage'
 import Home from './pages/Home';
 import MoviesList from './pages/MoviesList';
-import { useCurrentUser } from './contexts/CurrentUserContext';
 import SignInPage from './pages/auth/SignInPage';
 import MoviesCreate from './pages/MoviesCreate';
 import MoviesDetail from './pages/MoviesDetail';
 import TestPage from './pages/TestPage';
+
+import { useCurrentUser } from './contexts/CurrentUserContext';
+
 
 function App() {
   const currentUser = useCurrentUser()

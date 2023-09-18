@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styles from '../styles/NavBar.module.css';
 import Container from 'react-bootstrap/Container';
 import useClickOutsideSelected from '../hooks/useClickOutsideArea.js';
@@ -9,11 +9,15 @@ import { NavLink } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
 import Button from 'react-bootstrap/esm/Button';
+import { axiosReq, axiosRes } from '../api/AxiosDefaults';
+import AuthContext from '../contexts/AuthContext'
 
 const NavBar = () => {
     // Custom hook to get the signed in user
     const currentUser = useCurrentUser()
     const setCurrentUser = useSetCurrentUser()
+    let {user} = useContext(AuthContext)
+    let {logoutuser} = useContext(AuthContext)
 
     const { expanded, setExpanded, ref } = useClickOutsideSelected();
 
@@ -29,7 +33,7 @@ const NavBar = () => {
     const checkToken = async () => {
         try {
             console.log('Check Token')
-            const { data } = await axios.post('/dj-rest-auth/token/refresh/')
+            const { data } = await axios.post('/api/token/refresh/')
             console.log(`Token ${data}`)
         } catch (error) {
             
@@ -54,9 +58,9 @@ const NavBar = () => {
             activeClassName={styles.Active}
             aria-label="movies list"
             to='/'
-        >User: {currentUser?.username}
+        >User: {user?.username}
         </NavLink>
-        <Button onClick={handleSignOut}>Sign out</Button>
+        <Button onClick={logoutuser}>Sign out</Button>
         </>
     )
 
@@ -97,9 +101,9 @@ const NavBar = () => {
             to='/test'
         >Test
         </NavLink>
-        {currentUser ? signedIn : signedOut}
-        {/* <Button onClick={checkToken}>Check token</Button> */}
-        {/* <Button onClick={checkUser}>Check User</Button> */}
+        {user ? signedIn : signedOut}
+        <Button onClick={checkToken}>Check token</Button>
+        <Button onClick={checkUser}>Check User</Button>
         {/* <Navbar.Toggle
             className={styles.Toggle}
             aria-controls="basic-navbar-nav"

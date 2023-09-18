@@ -49,40 +49,40 @@ const MoviesList = () => {
         navigate('/movies/create')
     }
 
-  return (
-    <>
-        <div>
-            <Button onClick={handleTestClick}>Create</Button>
-        </div>
-        <Container className={styles.Container}>
-            {hasLoaded ? (
-                <>
-                {movies ? (
+    return (
+        <>
+            <div>
+                <Button onClick={handleTestClick}>Create</Button>
+            </div>
+            <Container className={styles.Container}>
+                {hasLoaded ? (
                     <>
-                        {/* Map over each of the movies */}
-                        {/* This is a bit of a mess to make the rows only be 4  */}
-                        <Row>
-                        {movies?.results.map((movie, index) => (
-                            <>
-                                <Col xs md={4} className={styles.Col}>
-                                    <Card key={movie.id} {...movie} />
-                                </Col>
-                            {index % 2 === 0 && index !== 0 ? (<div></div>) : ('')}
-                            </>
-                        ))}
-                        </Row>
+                    {movies ? (
+                        <>
+                            {/* Map over each of the movies */}
+                            {/* This is a bit of a mess to make the rows only be 4  */}
+                            <Row>
+                            {movies?.map((movie, index) => (
+                                <>
+                                    <Col xs md={4} className={styles.Col}>
+                                        <Card key={movie.id} {...movie} />
+                                    </Col>
+                                {index % 2 === 0 && index !== 0 ? (<div></div>) : ('')}
+                                </>
+                            ))}
+                            </Row>
+                        </>
+                        ) : (
+                            <p>No movies !! Sad face !!</p>
+                            )
+                    }
                     </>
-                    ) : (
-                        <p>No movies !! Sad face !!</p>
-                        )
-                }
-                </>
-            ) : (
-                <p>Loading....</p>
-            )}
-        </Container>
-    </>
-  )
+                ) : (
+                    <p>Loading....</p>
+                )}
+            </Container>
+        </>
+    )
 }
 
 export default MoviesList

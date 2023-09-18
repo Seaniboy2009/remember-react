@@ -58,7 +58,8 @@ const MoviesCreate = () => {
             console.log('Success create task')
             console.log(data)
             navigate('/movies/')
-        } catch (err) {
+        } catch (error) {
+            console.error(error);
             
         }
     }

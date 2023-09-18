@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button'
@@ -10,6 +10,7 @@ import styles from '../../styles/SignUp.module.css'
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useNavigate } from 'react-router-dom';
 import { axiosReq } from '../../api/AxiosDefaults';
+import AuthContext from '../../contexts/AuthContext';
 
 const SignInForm = () => {
     // Custom hook to set the signed in user
@@ -40,20 +41,44 @@ const SignInForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(formData)
-        try {
-            console.log('Try sign in')
-            const { data } = await axios.post('/dj-rest-auth/login/', formData)
-            setCurrentUser(data.user)
-            console.log('Success sign in')
-            console.log(data)
-            navigate("/");
-        } catch (err) {
-            setErrors(err.response?.data)
-        }
+        // try {
+        //     console.log('Try sign in')
+        //     const { data } = await axios.post('/dj-rest-auth/login/', formData)
+        //     setCurrentUser(data.user)
+        //     console.log('Success sign in')
+        //     console.log(data)
+        //     navigate("/");
+        // } catch (err) {
+        //     setErrors(err.response?.data)
+        // }
+        // try {
+        //     const response = await axios.post('/dj-rest-auth/login/', formData);
+        //     const { token, refreshToken } = response.data;
+        //     console.log(response.data)
+        //     console.log(response.data.access)
+      
+        //     // Store the tokens in localStorage or secure cookie for later use
+        //     localStorage.setItem('token', token);
+        //     localStorage.setItem('refreshToken', refreshToken);
+      
+        //     // Redirect or perform other actions upon successful login
+        //     navigate("/");
+        //   } catch (error) {
+        //     // Handle login error
+        //   }
     }
+
+    let {loginUser} = useContext(AuthContext)
     return (
         <>
-            <Row className={`${styles.Container} justify-content-md-center`}>
+            <div>
+                <form onSubmit={loginUser}>
+                    <input type="text" name="username" placeholder="Enter Username" />
+                    <input type="password" name="password" placeholder="Enter Password" />
+                    <input type="submit"/>
+                </form>
+            </div>
+            {/* <Row className={`${styles.Container} justify-content-md-center`}>
                 <Col xs={8}>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="username">
@@ -94,7 +119,7 @@ const SignInForm = () => {
                         )}
                     </Form>
                 </Col>
-            </Row>
+            </Row> */}
         </>
     )
 }

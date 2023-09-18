@@ -22,12 +22,12 @@ export const CurrentUserProvider = ({ children }) => {
 
   const handleMount = async () => {
     console.log('Usercontext mounted')
-    try {
-      const { data } = await axiosRes.get("/dj-rest-auth/user/");
-      setCurrentUser(data);
-    } catch (error) {
-      setErrors(errors.response?.data)
-    }
+    // try {
+    //   const { data } = await axiosRes.get("/dj-rest-auth/user/");
+    //   setCurrentUser(data);
+    // } catch (error) {
+    //   setErrors(errors.response?.data)
+    // }
   };
 
   useEffect(() => {
@@ -35,11 +35,12 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
+
     // request interceptor, this will try and refresh the token before making a request
     axiosReq.interceptors.request.use(
       async (config) => {
         try {
-          await axios.post("/dj-rest-auth/token/refresh/");
+          await axios.post("/api/token/refresh/");
         } catch (error) {
           console.log(error)
           setCurrentUser((prevCurrentUser) => {
@@ -64,7 +65,7 @@ export const CurrentUserProvider = ({ children }) => {
       async (error) => {
         if (error.response?.status === 401) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            await axios.post("/api/token/refresh/");
           } catch (error) {
             console.log(error)
             setCurrentUser((prevCurrentUser) => {
