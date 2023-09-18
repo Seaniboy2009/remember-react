@@ -38,8 +38,8 @@ const Card = (props) => {
         </div>
         {moviesDetail ? (
           <>
-            <Button className={styles.Button}>Update</Button>
-            <Button className={styles.Button} onClick={handleDelete}>Delete</Button>
+            <button className={styles.Button}>Update</button>
+            <button className={styles.Button} onClick={handleDelete}>Delete</button>
           </>
         ) : (
           <Link to={`/movies/${id}`}>Go to Movie Details:&nbsp;</Link>

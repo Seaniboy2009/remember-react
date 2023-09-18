@@ -51,6 +51,9 @@ const MoviesList = () => {
 
   return (
     <>
+        <div>
+            <Button onClick={handleTestClick}>Create</Button>
+        </div>
         <Container className={styles.Container}>
             {hasLoaded ? (
                 <>
@@ -64,7 +67,7 @@ const MoviesList = () => {
                                 <Col xs md={4} className={styles.Col}>
                                     <Card key={movie.id} {...movie} />
                                 </Col>
-                            {index % 2 === 0 && index !== 0 ? (<Container></Container>) : ('')}
+                            {index % 2 === 0 && index !== 0 ? (<div></div>) : ('')}
                             </>
                         ))}
                         </Row>
@@ -78,9 +81,6 @@ const MoviesList = () => {
                 <p>Loading....</p>
             )}
         </Container>
-        <div>
-            <Button onClick={handleTestClick}>Create</Button>
-        </div>
     </>
   )
 }
