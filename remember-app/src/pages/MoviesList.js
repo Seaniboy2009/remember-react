@@ -52,35 +52,35 @@ const MoviesList = () => {
   return (
     <>
         <Container className={styles.Container}>
-        {hasLoaded ? (
-            <>
-            {movies ? (
+            {hasLoaded ? (
                 <>
-                    {/* Map over each of the movies */}
-                    {/* This is a bit of a mess to make the rows only be 4  */}
-                    <Row>
-                    {movies?.results.map((movie, index) => (
-                        <>
-                            <Col xs md={4} className={styles.Col}>
-                                <Card key={movie.id} {...movie} />
-                            </Col>
-                        {index % 2 === 0 && index !== 0 ? (<Container></Container>) : ('')}
-                        </>
-                    ))}
-                    </Row>
+                {movies ? (
+                    <>
+                        {/* Map over each of the movies */}
+                        {/* This is a bit of a mess to make the rows only be 4  */}
+                        <Row>
+                        {movies?.results.map((movie, index) => (
+                            <>
+                                <Col xs md={4} className={styles.Col}>
+                                    <Card key={movie.id} {...movie} />
+                                </Col>
+                            {index % 2 === 0 && index !== 0 ? (<Container></Container>) : ('')}
+                            </>
+                        ))}
+                        </Row>
+                    </>
+                    ) : (
+                        <p>No movies !! Sad face !!</p>
+                        )
+                }
                 </>
-                ) : (
-                    <p>No movies !! Sad face !!</p>
-                    )
-            }
-            </>
-        ) : (
-            <p>Loading....</p>
-        )}
-    </Container>
-    <div>
-        <Button onClick={handleTestClick}>Create</Button>
-    </div>
+            ) : (
+                <p>Loading....</p>
+            )}
+        </Container>
+        <div>
+            <Button onClick={handleTestClick}>Create</Button>
+        </div>
     </>
   )
 }

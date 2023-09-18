@@ -11,7 +11,8 @@
 }
 
 .Col {
-    height: 60%;
+    /* height: 60%; */
+    padding-bottom: 80px;
 }
 
 .Row {

@@ -91,15 +91,15 @@ const NavBar = () => {
         >Movies
         </NavLink>
         {currentUser ? signedIn : signedOut}
-        <Button onClick={checkToken}>Check token</Button>
-        <Button onClick={checkUser}>Check User</Button>
-        <Navbar.Toggle
+        {/* <Button onClick={checkToken}>Check token</Button> */}
+        {/* <Button onClick={checkUser}>Check User</Button> */}
+        {/* <Navbar.Toggle
             className={styles.Toggle}
             aria-controls="basic-navbar-nav"
             aria-label="navbar toggle for mobile"
             ref={ref}
             onClick={() => setExpanded(!expanded)}
-        />
+        /> */}
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto text-left">
                 {/* <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i className="fa-brands fa-wpexplorer fa-lg"></i> Explore</NavLink> */}
