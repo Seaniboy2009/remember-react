@@ -7,14 +7,11 @@ import Row from 'react-bootstrap/Row';
 import axios from "axios";
 import styles from '../../styles/SignUp.module.css'
 
-import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useNavigate } from 'react-router-dom';
 import { axiosReq } from '../../api/AxiosDefaults';
 import AuthContext from '../../contexts/AuthContext';
 
 const SignInForm = () => {
-    // Custom hook to set the signed in user
-    const setCurrentUser = useSetCurrentUser()
 
     // Data that will be sent to the API
     const [formData, setFormData] = useState({

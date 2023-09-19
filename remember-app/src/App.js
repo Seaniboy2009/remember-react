@@ -10,11 +10,10 @@ import MoviesCreate from './pages/MoviesCreate';
 import MoviesDetail from './pages/MoviesDetail';
 import TestPage from './pages/TestPage';
 
-import { useCurrentUser } from './contexts/CurrentUserContext';
+import TestingTaskList from './components/TestingTask';
 
 
 function App() {
-  const currentUser = useCurrentUser()
 
   return (
     <div className={styles.App}>
@@ -28,6 +27,7 @@ function App() {
           <Route path='/movies/:id' element ={<MoviesDetail />} />
           <Route path='/movies/create' element ={<MoviesCreate />} />
           <Route path='/test' element ={<TestPage />} />
+          <Route path='/testtask' element ={<TestingTaskList />} />
         </Routes>
       </Container>
     </div>

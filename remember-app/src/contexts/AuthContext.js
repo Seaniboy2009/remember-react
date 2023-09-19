@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
+import axios from "axios";
     
 const AuthContext = createContext()
 
@@ -37,6 +38,7 @@ export const AuthProvider = ({children}) => {
             setAuthTokens(data)
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
+            console.log(localStorage.getItem('authTokens'))
             navigate('/')
 
         } else {
@@ -51,12 +53,10 @@ export const AuthProvider = ({children}) => {
         navigate('/')
     }
 
-
     let contextData = {
         user:user,
         loginUser:loginUser,
-        logoutuser:logoutuser
-
+        logoutuser:logoutuser,
     }
 
     return(
